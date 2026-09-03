@@ -4,9 +4,20 @@ const cors = require('cors');
 const nodemailer = require('nodemailer');
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://portfolio-gacg.onrender.com"
+];
+
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || "https://portfolio-gacg.onrender.com",
-  methods: ["POST"],
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["POST", "OPTIONS"],
   credentials: true
 }));
 
@@ -19,6 +30,7 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS
   }
 });
+
 
 app.post('/send-email', async (req, res) => {
   try {
