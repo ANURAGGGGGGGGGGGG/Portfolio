@@ -83,7 +83,7 @@ const Home = () => {
               View Projects
             </Link>
             <div className="social-links">
-              <a href="https://github.com/ANURAGGGGGGGGGGGG?tab=repositories" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/ANURAGGGGGGGGGGGG" target="_blank" rel="noopener noreferrer">
                 <FiGithub className="social-icon" />
               </a>
                   <a href="https://www.linkedin.com/in/anurag-mahantaa/" target="_blank" rel="noopener noreferrer">

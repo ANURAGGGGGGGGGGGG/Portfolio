@@ -1,6 +1,7 @@
 // components/Projects.jsx
 import { useState } from 'react';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import Reveal from '../Reveal';
 import Usability from "../../assets/UsabilityHub.png";
 import NextBuy from "../../assets/NextBuy.png";
 import QrGenerator from "../../assets/QrGenerator.png";
@@ -231,9 +232,11 @@ const Projects = () => {
   return (
     <section className="projects-section">
       <div className="projects-container">
-        <h2 className="section-title">My Projects</h2>
+        <Reveal direction="up">
+          <h2 className="section-title">My Projects</h2>
+        </Reveal>
 
-        <div className="filter-tags">
+        <Reveal className="filter-tags" delay={120}>
           {tags.map(tag => (
             <button
               key={tag}
@@ -243,34 +246,40 @@ const Projects = () => {
               {tag}
             </button>
           ))}
-        </div>
+        </Reveal>
 
         <div className="projects-grid">
-          {filteredProjects.map(project => (
-            <div key={project.id} className="project-card">
-              <div className="project-image">
-                <img src={project.image || '/default-project.jpg'} alt={project.title} />
-                <div className="project-links">
-                  <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                    <FiExternalLink className="icon" />
-                  </a>
-                  <a href={project.code} target="_blank" rel="noopener noreferrer">
-                    <FiGithub className="icon" />
-                  </a>
+          {filteredProjects.map((project, index) => (
+            <Reveal
+              key={`${selectedTag}-${project.id}-${index}`}
+              direction="up"
+              delay={(index % 3) * 100}
+            >
+              <div className="project-card">
+                <div className="project-image">
+                  <img src={project.image || '/default-project.jpg'} alt={project.title} />
+                  <div className="project-links">
+                    <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                      <FiExternalLink className="icon" />
+                    </a>
+                    <a href={project.code} target="_blank" rel="noopener noreferrer">
+                      <FiGithub className="icon" />
+                    </a>
+                  </div>
+                </div>
+
+                <div className="project-content">
+                  <h3 className="project-title">{project.title}</h3>
+                  <p className="project-description">{project.description}</p>
+
+                  <div className="project-tags">
+                    {project.tags.map(tag => (
+                      <span key={tag} className="tech-tag">{tag}</span>
+                    ))}
+                  </div>
                 </div>
               </div>
-
-              <div className="project-content">
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-description">{project.description}</p>
-
-                <div className="project-tags">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="tech-tag">{tag}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

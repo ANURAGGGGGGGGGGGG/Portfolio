@@ -1,154 +1,44 @@
-/* Navbar.css */
-:root {
-    --primary-color: #00ff88;
-    --secondary-color: #00b3ff;
-    --dark-color: #0a192f;
-    --light-color: #ccd6f6;
-    --nav-bg: rgba(10, 25, 47, 0.85);
+/* Navbar.css - Component-specific overrides and animations */
+@keyframes navItemFade {
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
-  .navbar {
+}
+
+/* Mobile navbar specific styles */
+@media (max-width: 768px) {
+  .nav-links {
     position: fixed;
     top: 0;
-    width: 100%;
-    background: var(--nav-bg);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .navbar.scrolled {
-    background: rgba(10, 25, 47, 0.95);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-  }
-  
-  .navbar-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .logo{
-    text-decoration: none;
-  }
-  
-  .logo-text {
-    font-family: 'Fira Code', monospace;
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    position: relative;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .logo-text::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--secondary-color);
-    transition: width 0.3s ease;
-  }
-  
-  .logo-text:hover::after {
-    width: 100%;
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 2rem;
+    left: -100%;
+    height: 100vh;
+    width: 70%;
+    flex-direction: column;
+    background: var(--dark-color);
+    padding: 2rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(20px);
   }
-  
-  .nav-item {
-    position: relative;
-    padding: 0.5rem 1rem;
-    color: var(--light-color);
-    text-decoration: none;
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
-  
-  .nav-hover {
-    position: absolute;
-    bottom: 0;
+
+  .nav-links.active {
     left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
   }
-  
-  .nav-item:hover .nav-hover {
-    transform: translateX(0);
+
+  .nav-item {
+    padding: 1rem;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: navItemFade 0.3s ease forwards;
   }
-  
-  .nav-item.active .nav-hover {
-    transform: translateX(0);
-  }
-  
-  .nav-text {
-    position: relative;
-    z-index: 1;
-  }
-  
+
   .nav-toggle {
-    display: none;
-    color: var(--primary-color);
-    font-size: 1.8rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    display: block;
+    z-index: 1001;
   }
-  
-  .nav-icon {
-    transition: transform 0.3s ease;
+
+  .navbar-container {
+    padding: 1rem;
   }
-  
-  /* Mobile Styles */
-  @media (max-width: 768px) {
-    .nav-links {
-      position: fixed;
-      top: 0;
-      left: -100%;
-      height: 100vh;
-      width: 70%;
-      flex-direction: column;
-      background: var(--dark-color);
-      padding: 2rem;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-  
-    .nav-links.active {
-      left: 0;
-      box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
-    }
-  
-    .nav-item {
-      padding: 1rem;
-      opacity: 0;
-      transform: translateX(-20px);
-      animation: navItemFade 0.3s ease forwards;
-    }
-  
-    @keyframes navItemFade {
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-  
-    .nav-toggle {
-      display: block;
-      z-index: 1001;
-    }
-  
-    .navbar-container {
-      padding: 1rem;
-    }
-  }
+}

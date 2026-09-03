@@ -1,7 +1,7 @@
 const responses = {
   "hello": "Hi! I'm Anurag's portfolio assistant. Ask me about my projects, skills, or contact.",
   "who are you": "I am a chatbot assistant for Anurag's portfolio. I can tell you about his projects, skills, and experience.",
-  "skills": "My main skills include HTML, CSS, JavaScript, React, Node.js, Express, and MongoDB.",
+  "skills": "My main skills include HTML, CSS, JavaScript, React, Next.js, Node.js, Express, and MongoDB.",
   "projects": "Some of my projects include: AI Background Remover, Quiz Game Web App, and Portfolio Website.",
   "experience": "I am a full stack web developer with experience including a 2-month internship at Synthra Labs, where I focused on building modern web applications and AI-powered tools.",
   "contact": "You can contact me via email or through my portfolio contact form.",

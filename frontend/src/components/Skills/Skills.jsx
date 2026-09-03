@@ -130,8 +130,12 @@ const Skills = () => {
         <h2 className="section-title">Technical Skills</h2>
         
         <div className="skills-grid">
-          {Object.entries(skills).map(([category, data]) => (
-            <div key={category} className="skill-category">
+          {Object.entries(skills).map(([category, data], index) => (
+            <div
+              key={category}
+              className="skill-category"
+              style={{ transitionDelay: `${index * 130}ms` }}
+            >
               <div className="category-header">
                 <span className="category-icon">{data.icon}</span>
                 <h3>{data.title}</h3>
