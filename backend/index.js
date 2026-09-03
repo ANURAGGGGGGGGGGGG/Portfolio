@@ -10,13 +10,7 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  origin: allowedOrigins,
   methods: ["POST", "OPTIONS"],
   credentials: true
 }));
@@ -56,8 +50,12 @@ app.post('/send-email', async (req, res) => {
     res.status(500).json({ error: 'Error sending email' });
   }
 });
+app.get('/', (req, res) => {
+  res.send('Backend is running!');
+});
 
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
